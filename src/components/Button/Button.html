@@ -1,0 +1,15 @@
+<span class="controls-Button__wrapper">
+
+    <button v-if=" this.tag === 'button' "
+            class="controls-Button controls-Button_tag_button">
+        <slot v-if="this._caption === ''"></slot>
+        <span v-else>{{ this._caption}}</span>
+    </button>
+
+    <input v-else type="button"
+           :value="this._caption"
+           class="controls-Button controls-Button_tag_input"
+    >
+
+</span>
+

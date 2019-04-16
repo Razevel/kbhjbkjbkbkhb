@@ -1,0 +1,43 @@
+$background-color_controls-Button:        $color-white;
+$background-color_controls-Button_hover:  $background-color_controls-Button;
+$background-color_controls-Button_active: $background-color_controls-Button_hover;
+$border-style_controls-Button:            solid;
+$border-radius_controls-Button:           10rem;
+$border-radius_controls-Button_hover:     $border-radius_controls-Button;
+$border-radius_controls-Button_active:    $border-radius_controls-Button_hover;
+$border-width_controls-Button:            0px;
+$border-width_controls-Button_hover:      $border-width_controls-Button;
+$border-width_controls-Button_active:     $border-width_controls-Button_hover;
+$border-color_controls-Button:            #19CC95;
+$border-color_controls-Button_hover:      $border-color_controls-Button;
+$border-color_controls-Button_active:     $border-color_controls-Button_hover;
+
+$color_controls-Button:                   #fff;
+$color_controls-Button_hover:             $color_controls-Button;
+$color_controls-Button_active:            $color_controls-Button_hover;
+
+$font-family_controls-Button:             inherit;
+$font-size_controls-Button:               inherit;
+$font-size_controls-Button_hover:         $font-size_controls-Button;
+$font-size_controls-Button_active:        $font-size_controls-Button_hover;
+
+$height_controls-Button:                  auto;
+$height_controls-Button_hover:            $height_controls-Button;
+$height_controls-Button_active:           $height_controls-Button_hover;
+
+$outline_controls-Button-wrapper:         none;
+$outline_controls-Button:                 $outline_controls-Button-wrapper;
+
+$padding_controls-Button:                 0px;
+$padding-vertical_controls-Button:        1.5rem;
+$padding-horizontal_controls-Button:      4rem;
+$padding-top_controls-Button:             $padding-vertical_controls-Button;
+$padding-right_controls-Button:           $padding-horizontal_controls-Button;
+$padding-bottom_controls-Button:          $padding-vertical_controls-Button;
+$padding-left_controls-Button:            $padding-horizontal_controls-Button;
+$padding_controls-Button:                 $padding-top_controls-Button $padding-right_controls-Button $padding-bottom_controls-Button $padding-left_controls-Button;
+
+$width_controls-Button:                   auto;
+$width_controls-Button_hover:             $width_controls-Button;
+$width_controls-Button_active:            $width_controls-Button_hover;
+

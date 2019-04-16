@@ -1,0 +1,226 @@
+.controls-Schedule__inner-wrapper {
+  background-color: #fff;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 0 1.5px 0.5px rgba(215, 216, 219, 0.8);
+}
+
+.controls-Schedule__caption-aligner{}
+
+.controls-Schedule__caption {
+  color: #d7d8db;
+  position: relative;
+  display: flex;
+  margin-bottom: 1px;
+  padding: 0 12px;
+  font-size: 14px;
+  span {
+    margin: 0;
+    padding: 0 3px;
+    background-color: #fff;
+    font-family: 'LatoWebSemibold', sans-serif;
+  }
+  &:after {
+    content: '\200b';
+    z-index: -1;
+    position: absolute;
+    border: 1px solid #d7d8db;
+    border-radius: 3px;
+    width: calc(100% - 14px);
+    left: 7px;
+    background-color: transparent;
+    top: 50%;
+  }
+}
+
+.controls-Schedule__caption_center {
+  justify-content: center;
+}
+.controls-Schedule__caption_left {
+  justify-content: flex-start;
+}
+.controls-Schedule__caption_right {
+  justify-content: flex-end;
+}
+
+.controls-Schedule__header {
+  min-height: 55px;
+}
+
+.controls-Schedule__grid {
+  display: grid;
+  grid-template-columns: 15px auto 15px repeat(6, 1fr);
+  font-family: 'Lato', 'Open Sans', sans-serif;
+  color: #2c2c2c;
+}
+
+.controls-Schedule__grid-row {
+  display: contents;
+}
+
+.controls-Schedule__grid-row:not(.controls-Schedule__grid-row__day-names):hover {
+  .controls-Schedule__grid-cell {
+    background-color: lighten($blue_hover, 3);
+  }
+}
+
+/* === Границы ячеек === */
+
+/* У всех ячеек граница есть снизу и слева, чтобы сохранить ширину в 1 пиксель */
+.controls-Schedule__grid-cell {
+  border: 1px solid #dbdbdb;
+  border-top-width: 0;
+  border-right-width: 0;
+  cursor: default;
+}
+
+/* Первая строка осталась без границы сверху, добавляем */
+.controls-Schedule__grid-row:first-child .controls-Schedule__grid-cell {
+  border-top-width: 1px;
+}
+
+
+/* Последняя ячейка в строке осталась без границы справа, добавляем */
+.controls-Schedule__grid-cell:last-child {
+  border-right-width: 1px;
+}
+
+.controls-Schedule__grid-cell.controls-Schedule__grid-cell__time {
+  border-width: 0;
+
+}
+.controls-Schedule__fake-for-time {
+  border-width: 0;
+  border-bottom-width: 1px;
+}
+.controls-Schedule__fake-for-time:first-child {
+  border-left-width: 1px;
+}
+
+.controls-Schedule__grid-row:last-child .controls-Schedule__grid-cell__time {
+  border-bottom-width: 1px;
+}
+
+.controls-Schedule__grid-cell:first-child  {
+  border-left-width: 0;
+}
+.controls-Schedule__grid-cell:last  {
+  border-right-width: 0;
+}
+
+
+  /* === Границы ячеек === */
+
+
+
+
+
+
+/* === Высоты строк === */
+
+/* Шапка таблицы с названием дней */
+.controls-Schedule__grid-row__day-names .controls-Schedule__grid-cell {
+  height: 50px;
+}
+
+/* Строка урока */
+.controls-Schedule__grid-row__lesson .controls-Schedule__grid-cell {
+  height: 100px;
+}
+
+/* Строка перемены */
+.controls-Schedule__grid-row__break .controls-Schedule__grid-cell {
+  height: 50px;
+}
+
+.controls-Schedule__grid-row__end .controls-Schedule__grid-cell {
+  height: 30px;
+}
+
+/* === Высоты строк === */
+
+.controls-Schedule__grid-cell__day-name {
+  position: relative;
+}
+
+.controls-Schedule__day-name {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.controls-Schedule__grid-row__day-number {
+  position: absolute;
+  color: #9b9a9a;
+  font-size: 14px;
+  top: 2px;
+  right: 2px;
+}
+
+.controls-Schedule__grid-cell__time__wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.controls-Schedule__grid-cell__time__label {
+  font-size: 14px;
+  position: relative;
+  top: -8px;
+  padding: 0 5px;
+
+}
+
+$margin_lesson-cell: 5px;
+$padding_lesson-cell: 3px;
+
+.controls-Schedule__lesson {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - #{$margin_lesson-cell*2});
+  height: calc(100% - #{$margin_lesson-cell*2});
+  margin: $margin_lesson-cell;
+  border-radius: 3px;
+  font-size: 14px;
+  padding: $padding_lesson-cell;
+  cursor: pointer;
+}
+
+.controls-Schedule__lesson-name {
+
+}
+
+.controls-Schedule__lesson-room {
+  order: -1;
+}
+
+.controls-Schedule__lesson-teacher {
+  display: none;
+}
+
+.bg-color-orange {
+  @include shedule-lesson-bg-color(#f6b067);
+}
+
+.bg-color-violet {
+  @include shedule-lesson-bg-color(lighten(#443453, 30), #443453, .8);
+}
+
+.bg-color-moreen {
+  @include shedule-lesson-bg-color(#4db6ac);
+}
+
+.bg-color-pink {
+  @include shedule-lesson-bg-color(#ef9a9a);
+}
+
+.bg-color-yellow {
+  @include shedule-lesson-bg-color(rgba(darken(#ffd14f, 10), 0.1));
+}
+
+.bg-color-red {
+  @include shedule-lesson-bg-color(#da4453, #951029, 1, 1);
+}
+
+.bg-color-green {
+  @include shedule-lesson-bg-color(#a1ecae);
+}

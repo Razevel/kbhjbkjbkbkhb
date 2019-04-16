@@ -1,0 +1,52 @@
+.controls-Button__wrapper {
+  margin: 20px;
+  display: inline-flex;
+  outline: none;
+}
+
+.controls-Button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+  background-color: $background-color_controls-Button;
+  background: linear-gradient(to right, #da4453, #89216b);
+  border-color: $border-color_controls-Button;
+  border-style: $border-style_controls-Button;
+  border-radius: $border-radius_controls-Button;
+  border-width: $border-width_controls-Button;
+  color: $color_controls-Button;
+  font-size: $font-size_controls-Button;
+  font-family: $font-family_controls-Button;
+  height: $height_controls-Button;
+  padding: $padding_controls-Button;
+  outline: $outline_controls-Button;
+  width: $width_controls-Button;
+}
+
+.controls-Button:hover {
+  font-size: $font-size_controls-Button_hover;
+  background-color: $background-color_controls-Button_hover;
+  background: linear-gradient(to right, darken(#da4453, 10%), darken(#89216b, 10%));
+  border-color: $border-color_controls-Button_hover;
+  border-radius: $border-radius_controls-Button_hover;
+  border-width: $border-width_controls-Button_hover;
+  height: $height_controls-Button_hover;
+  color: $color_controls-Button_hover;
+  width: $width_controls-Button_hover;
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0,0,0,.3);
+}
+
+.controls-Button:active {
+  font-size: $font-size_controls-Button_active;
+  background-color: $background-color_controls-Button_active;
+  border-color: $border-color_controls-Button_active;
+  border-radius: $border-radius_controls-Button_active;
+  border-width: $border-width_controls-Button_active;
+  height: $height_controls-Button_active;
+  color: $color_controls-Button_active;
+  width: $width_controls-Button_active;
+  transform: translateY(0px);
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.3);
+}

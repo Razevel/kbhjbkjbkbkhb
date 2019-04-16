@@ -1,0 +1,17 @@
+//@mixin bg-color($bg-color, $border-color) {
+//
+//}
+
+@mixin shedule-lesson-bg-color(
+  $bg-color,
+  $border-color: false,
+  $bg-color-opacity: 0.5,
+  $border-color-opacity: 1
+) {
+  background-color: rgba($bg-color, $bg-color-opacity);
+  @if $border-color {
+    box-shadow: 0px 0px 1.5px 0.5px rgba($border-color, $border-color-opacity);
+  } @else {
+    box-shadow: 0px 0px 1.5px 0.5px rgba($bg-color, $border-color-opacity);
+  }
+}

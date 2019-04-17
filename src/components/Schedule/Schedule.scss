@@ -57,7 +57,7 @@
   display: contents;
 }
 
-.controls-Schedule__grid-row:not(.controls-Schedule__grid-row__day-names):hover {
+.controls-Schedule__grid-row:hover {
   .controls-Schedule__grid-cell {
     background-color: lighten($blue_hover, 3);
   }

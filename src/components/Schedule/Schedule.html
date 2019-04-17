@@ -1,384 +1,98 @@
 <div class="controls-Schedule">
-    <div v-if="!!this.caption" class="controls-Schedule__caption" :class="captionClasses">
-        <span>{{ this.caption }}</span>
-    </div>
 
-    <div class="controls-Schedule__inner-wrapper">
+  <!-- Caption -->
+  <div v-if="!!this.caption" class="controls-Schedule__caption" :class="captionClasses">
+    <span>{{ this.caption }}</span>
+  </div>
+  <!-- ./Caption -->
 
-        <div class="controls-Schedule__header"></div>
-        <div class="controls-Schedule__grid">
+  <div class="controls-Schedule__inner-wrapper">
 
-            <div class="controls-Schedule__grid-row controls-Schedule__grid-row__day-names">
-                <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time"></div>
-                <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
+    <!-- Schedule header -->
+    <div class="controls-Schedule__header"></div>
+    <!-- ./Schedule header -->
 
-                <div v-for="dayData in schedule.header"
-                     class="controls-Schedule__grid-cell controls-Schedule__grid-cell__day-name">
-                    <div class="controls-Schedule__day-name">
-                        {{ dayData.dayName }}
-                        <span class="controls-Schedule__grid-row__day-number">{{ dayData.dayData }}</span>
-                    </div>
-                </div>
+    <!-- Schedule grid, main content -->
+    <div class="controls-Schedule__grid">
 
-            </div>
+      <!-- Day names, grid columns headers -->
+      <div class="controls-Schedule__grid-row controls-Schedule__grid-row__day-names">
 
-            <div v-for="(row, index) in schedule.rows"
-                 :key="'schedule_day_row_'+index"
-                 class="controls-Schedule__grid-row"
-                 :class="row.type === 1?'controls-Schedule__grid-row__lesson':(row.type === 2?'controls-Schedule__grid-row__break':'')"
-            >
-                <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
-                    <div class="controls-Schedule__grid-cell__time__wrapper">
-                        <span class="controls-Schedule__grid-cell__time__label">{{ times[index] }}</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
+        <!-- Face columns, make spacing for time cells -->
+        <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
+        <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time"></div>
+        <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
+        <!-- ./Face columns, make spacing for time cells -->
 
-                <div v-for="lesson in row.lessons"
-                     class="controls-Schedule__grid-cell">
+        <!-- Header cells -->
+        <div v-for="day in ScheduleData.header"
+             class="controls-Schedule__grid-cell controls-Schedule__grid-cell__day-name">
 
-                    <div v-if="lesson.type===1"
-                         class="controls-Schedule__lesson"
-                         :class="'bg-color-'+lessons[lesson.id].color"
-                    >
-                        <span class="controls-Schedule__lesson-name">{{ lessons[lesson.id].title }}, {{ lessons[lesson.id].type }}</span>
-                        <span class="controls-Schedule__lesson-room">{{ lessons[lesson.id].room }}</span>
-                        <span class="controls-Schedule__lesson-teacher">{{ lessons[lesson.id].teacher }}</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="controls-Schedule__grid-row controls-Schedule__grid-row__end">
-                <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
-                    <div class="controls-Schedule__grid-cell__time__wrapper">
-                        <span class="controls-Schedule__grid-cell__time__label">{{ times[times.length-1] }}</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
-                <div class="controls-Schedule__grid-cell" v-for="lesson in schedule.rows[0].lessons"></div>
-            </div>
+          <div class="controls-Schedule__day-name">{{ $ucFirst($lc(day.dayName)) }}<span
+              class="controls-Schedule__grid-row__day-number">{{ day.dayData }}
+            </span>
+          </div>
 
         </div>
+        <!-- ./Header cells -->
 
-        <div class="controls-Schedule__grid" style="display: none;">
-            <div class="controls-Schedule__grid-row controls-Schedule__grid-row__day-names">
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__day-name">
-                    <div class="controls-Schedule__day-name">Понедельник<span
-                            class="controls-Schedule__grid-row__day-number">11</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__day-name">
-                    <div class="controls-Schedule__day-name">Вторник<span
-                            class="controls-Schedule__grid-row__day-number">12</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__day-name">
-                    <div class="controls-Schedule__day-name">Среда<span
-                            class="controls-Schedule__grid-row__day-number">13</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__day-name">
-                    <div class="controls-Schedule__day-name">Четверг<span
-                            class="controls-Schedule__grid-row__day-number">14</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__day-name">
-                    <div class="controls-Schedule__day-name">Пятница<span
-                            class="controls-Schedule__grid-row__day-number">15</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__day-name">
-                    <div class="controls-Schedule__day-name">Суббота<span
-                            class="controls-Schedule__grid-row__day-number">16</span>
-                    </div>
-                </div>
-            </div>
-            <div class="controls-Schedule__grid-row controls-Schedule__grid-row__lesson">
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
-                    <div class="controls-Schedule__grid-cell__time__wrapper">
-                        <span class="controls-Schedule__grid-cell__time__label">8:30</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson bg-color-orange">
-                        <span class="controls-Schedule__lesson-name">WEB технологии, лек.</span>
-                        <span class="controls-Schedule__lesson-room">Г-608</span>
-                        <span class="controls-Schedule__lesson-teacher">А.В.Никитенко</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson bg-color-">
-                        <span class="controls-Schedule__lesson-name">Англ.яз., пр.з.</span>
-                        <span class="controls-Schedule__lesson-room">Г-723</span>
-                        <span class="controls-Schedule__lesson-teacher"></span>
-                    </div>
-                    <div class="controls-Schedule__lesson bg-color-">
-                        <span class="controls-Schedule__lesson-name">Технологии программирования, лаб</span>
-                        <span class="controls-Schedule__lesson-room">Г-507</span>
-                        <span class="controls-Schedule__lesson-teacher">А.Б.Раухваргер</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson bg-color-">
-                        <span class="controls-Schedule__lesson-name"></span>
-                        <span class="controls-Schedule__lesson-room"></span>
-                        <span class="controls-Schedule__lesson-teacher"></span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson bg-color-">
-                        <span class="controls-Schedule__lesson-name"></span>
-                        <span class="controls-Schedule__lesson-room"></span>
-                        <span class="controls-Schedule__lesson-teacher"></span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson bg-color-">
-                        <span class="controls-Schedule__lesson-name"></span>
-                        <span class="controls-Schedule__lesson-room"></span>
-                        <span class="controls-Schedule__lesson-teacher"></span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson bg-color-">
-                        <span class="controls-Schedule__lesson-name"></span>
-                        <span class="controls-Schedule__lesson-room"></span>
-                        <span class="controls-Schedule__lesson-teacher"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="controls-Schedule__grid-row controls-Schedule__grid-row__break">
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
-                    <div class="controls-Schedule__grid-cell__time__wrapper">
-                        <span class="controls-Schedule__grid-cell__time__label">10:00</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-            </div>
-            <div class="controls-Schedule__grid-row controls-Schedule__grid-row__lesson">
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
-                    <div class="controls-Schedule__grid-cell__time__wrapper">
-                        <span class="controls-Schedule__grid-cell__time__label">10:10</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson bg-color-">
-                        <span class="controls-Schedule__lesson-name">Прикладная физическая культура</span>
-                        <span class="controls-Schedule__lesson-room"></span>
-                        <span class="controls-Schedule__lesson-teacher"></span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson bg-color-">
-                        <span class="controls-Schedule__lesson-name">Англ.яз., пр.з.</span>
-                        <span class="controls-Schedule__lesson-room">Г-723</span>
-                        <span class="controls-Schedule__lesson-teacher"></span>
-                    </div>
-                    <div class="controls-Schedule__lesson bg-color-">
-                        <span class="controls-Schedule__lesson-name">Технологии программирования, лаб</span>
-                        <span class="controls-Schedule__lesson-room">Г-507</span>
-                        <span class="controls-Schedule__lesson-teacher">А.Б.Раухваргер</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson bg-color-">
-                        <span class="controls-Schedule__lesson-name"></span>
-                        <span class="controls-Schedule__lesson-room"></span>
-                        <span class="controls-Schedule__lesson-teacher"></span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson bg-color-">
-                        <span class="controls-Schedule__lesson-name"></span>
-                        <span class="controls-Schedule__lesson-room"></span>
-                        <span class="controls-Schedule__lesson-teacher"></span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson bg-color-">
-                        <span class="controls-Schedule__lesson-name"></span>
-                        <span class="controls-Schedule__lesson-room"></span>
-                        <span class="controls-Schedule__lesson-teacher"></span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson bg-color-">
-                        <span class="controls-Schedule__lesson-name"></span>
-                        <span class="controls-Schedule__lesson-room"></span>
-                        <span class="controls-Schedule__lesson-teacher"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="controls-Schedule__grid-row controls-Schedule__grid-row__break">
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
-                    <div class="controls-Schedule__grid-cell__time__wrapper">
-                        <span class="controls-Schedule__grid-cell__time__label">11:40</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-            </div>
-            <div class="controls-Schedule__grid-row controls-Schedule__grid-row__lesson">
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
-                    <div class="controls-Schedule__grid-cell__time__wrapper">
-                        <span class="controls-Schedule__grid-cell__time__label">12:20</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson bg-color-">
-                        <span class="controls-Schedule__lesson-name">WEB технологии, лаб.</span>
-                        <span class="controls-Schedule__lesson-room">Г-505</span>
-                        <span class="controls-Schedule__lesson-teacher">А.В.Никитенк</span>
-                    </div>
-                    <div class="controls-Schedule__lesson bg-color-">
-                        <span class="controls-Schedule__lesson-name">Системы упр-ния базами данных, лаб.</span>
-                        <span class="controls-Schedule__lesson-room">А-225</span>
-                        <span class="controls-Schedule__lesson-teacher">С.Ю.Бойков</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-            </div>
-            <div class="controls-Schedule__grid-row controls-Schedule__grid-row__break">
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
-                    <div class="controls-Schedule__grid-cell__time__wrapper">
-                        <span class="controls-Schedule__grid-cell__time__label">13:50</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-            </div>
-            <div class="controls-Schedule__grid-row controls-Schedule__grid-row__lesson">
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
-                    <div class="controls-Schedule__grid-cell__time__wrapper">
-                        <span class="controls-Schedule__grid-cell__time__label">14:00</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson bg-color-">
-                        <span class="controls-Schedule__lesson-name">WEB технологии, лаб.</span>
-                        <span class="controls-Schedule__lesson-room">Г-505</span>
-                        <span class="controls-Schedule__lesson-teacher">А.В.Никитенк</span>
-                    </div>
-                    <div class="controls-Schedule__lesson bg-color-">
-                        <span class="controls-Schedule__lesson-name">Системы упр-ния базами данных, лаб.</span>
-                        <span class="controls-Schedule__lesson-room">А-225</span>
-                        <span class="controls-Schedule__lesson-teacher">С.Ю.Бойков</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-            </div>
-            <div class="controls-Schedule__grid-row controls-Schedule__grid-row__break">
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
-                    <div class="controls-Schedule__grid-cell__time__wrapper">
-                        <span class="controls-Schedule__grid-cell__time__label">15:30</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-            </div>
-            <div class="controls-Schedule__grid-row controls-Schedule__grid-row__lesson">
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
-                    <div class="controls-Schedule__grid-cell__time__wrapper">
-                        <span class="controls-Schedule__grid-cell__time__label">15:40</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson bg-color-">
-                        <span class="controls-Schedule__lesson-name">Англ.яз., пр.з.</span>
-                        <span class="controls-Schedule__lesson-room">Г-723</span>
-                        <span class="controls-Schedule__lesson-teacher"></span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-            </div>
-            <div class="controls-Schedule__grid-row controls-Schedule__grid-row__break">
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
-                    <div class="controls-Schedule__grid-cell__time__wrapper">
-                        <span class="controls-Schedule__grid-cell__time__label">17:10</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-            </div>
-            <div class="controls-Schedule__grid-row controls-Schedule__grid-row__lesson">
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
-                    <div class="controls-Schedule__grid-cell__time__wrapper">
-                        <span class="controls-Schedule__grid-cell__time__label">17:20</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell"></div>
+      </div>
+      <!-- ./Day names, grid columns headers -->
 
-                <div class="controls-Schedule__grid-cell"></div>
-            </div>
-            <div class="controls-Schedule__grid-row controls-Schedule__grid-row__break">
-                <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
-                    <div class="controls-Schedule__grid-cell__time__wrapper">
-                        <span class="controls-Schedule__grid-cell__time__label">18:50</span>
-                    </div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson"></div>
-                </div>
-                <div class="controls-Schedule__grid-cell"></div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson"></div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson"></div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson"></div>
-                </div>
-                <div class="controls-Schedule__grid-cell">
-                    <div class="controls-Schedule__lesson"></div>
-                </div>
-            </div>
+
+      <!-- Grid rows -->
+      <!-- Rows can contain lessons -->
+      <div v-for="(row, index) in ScheduleData.rows" class="controls-Schedule__grid-row"
+           :key="'schedule_day_row_'+index"
+           :class="rowClasses(index)">
+
+        <!-- RowTime -->
+        <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
+        <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
+          <div class="controls-Schedule__grid-cell__time__wrapper">
+            <span class="controls-Schedule__grid-cell__time__label">{{ times[index].start }}</span>
+          </div>
         </div>
+        <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
+        <!-- ./RowTime -->
+
+
+        <!-- DayInTime-->
+        <div v-for="day in row.days" class="controls-Schedule__grid-cell">
+          <div v-for="lesson in day.lessons" class="controls-Schedule__lesson"
+               :class="'bg-color-'+lessons[lesson.id].color">
+            <span class="controls-Schedule__lesson-name">{{ lesson.title }}, {{ lesson.type }}</span>
+            <span class="controls-Schedule__lesson-room">{{ lesson.room }}</span>
+            <span class="controls-Schedule__lesson-teacher">{{ lesson.teacher }}</span>
+          </div>
+        </div>
+        <!-- ./DayInTime-->
+
+      </div>
+      <!-- ./Rows can contain lessons -->
+
+      <!-- Last grid row with end of last lesson-->
+      <div class="controls-Schedule__grid-row controls-Schedule__grid-row__end">
+        <!-- RowTime -->
+        <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
+        <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
+          <div class="controls-Schedule__grid-cell__time__wrapper">
+            <span class="controls-Schedule__grid-cell__time__label">{{ ScheduleData.rows[ScheduleData.rows.length-1].stop }}</span>
+          </div>
+        </div>
+        <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
+        <!-- ./RowTime -->
+
+        <div v-for="day in ScheduleData.rows[ScheduleData.rows.length-1].days"
+             class="controls-Schedule__grid-cell"></div>
+      </div>
+      <!-- ./Last grid row with end of last lesson-->
+
+      <!-- ./Grid rows -->
+
 
     </div>
+    <!-- ./Schedule grid, main content -->
+
+  </div>
 </div>

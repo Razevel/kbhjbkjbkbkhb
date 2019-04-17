@@ -2,20 +2,14 @@
 
     <Schedule caption="Расписание занятий"
               captionPosition="right"
-              :times="this.inTimes"
-              :lessons="this.inLessons"
+              :times="times"
+              :lessons="lessons"
               style="width: 800px; margin: 10px auto;"
-              :schedule="this.inSchedule"/>
+              :schedule="schedule"/>
 </template>
 
 <script>
-   import { Schedule, InTimes, InTime, TimeIntervalType } from "./../components/Shedule.ts"
-
-   const Type = {
-      Window: 0,
-      Lesson: 1,
-      Break: 2
-   };
+   import { Schedule, TimeIntervalType } from "./../components/Shedule.ts"
 
    export default {
       components: {
@@ -23,7 +17,7 @@
       },
       data() {
          return {
-            inTimes: [
+            times: [
                {
                   start: '8:30',
                   stop: '10:00',
@@ -80,23 +74,29 @@
                   type: TimeIntervalType.Lesson
                }
             ],
-            inLessons: {
+            lessons: {
                1: {
                   title: 'WEB технологии',
                   teacher: 'Никитенко А.В.',
                   defaultRoom: 'А-404',
-                  type: 'Lection'
+                  type: 'Lection',
+                  color: 'orange'
                }
             },
-            inSchedule:{
+            schedule:{
                "monday": [
                   {
                      id: 1,
-                     times: [1,3,5],
+                     times: [0,2,4],
                      room: 'Г-207'
                   }
                ]
-            },
+            }
+         }
+      }
+   }
+   /*
+   * ,
             lessons: {
                1: {
                   id: 1,
@@ -470,9 +470,7 @@
                   }
                ]
             }
-         }
-      }
-   }
+            */
 </script>
 
 <style scoped>

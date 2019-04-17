@@ -109,19 +109,30 @@ type OutDay = {
 
 const weekDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
-function convert(schedule: InSchedule, lessons: InLessons, times: InTimes): OutSchedule {
+type ScheduleForRender = {
+    header: any,
+    rows: OutSchedule
+    footer: any
+}
+function convert(schedule: InSchedule, lessons: InLessons, times: InTimes): ScheduleForRender {
     debugger;
     
-    let result: OutSchedule = [];
+    let result: ScheduleForRender = {
+        header: [],
+        rows: [],
+        footer: {}
+    };
+    
+    weekDays.forEach(dayName => {
+        result.header.push({
+            dayName,
+            dayData: '123'
+        });
+    });
     
     // Идём по интервалам времени, это пары и перемены, посути строки таблицы
     times.forEach((timeInterval, tiIndex) => {
-        let scheduleRow: OutScheduleRow = {
-            start: timeInterval.start,
-            stop: timeInterval.stop,
-            type: timeInterval.type,
-            days: []
-        };
+        let scheduleRow: OutScheduleRow = { ...timeInterval, days: [] };
         
         //Пройдемся по дням недели и соберем занятия на текущем промежутке времени (строке)
         weekDays.forEach((dayName, dayIndex) => {
@@ -159,7 +170,7 @@ function convert(schedule: InSchedule, lessons: InLessons, times: InTimes): OutS
             scheduleRow.days.push(outDay);
         });
         
-        result.push(scheduleRow);
+        result.rows.push(scheduleRow);
     });
     return result;
 }
@@ -183,5 +194,7 @@ export {
     OutSchedule,
     OutScheduleRow,
     OutDay,
-    OutLesson
+    OutLesson,
+    
+    ScheduleForRender
 }

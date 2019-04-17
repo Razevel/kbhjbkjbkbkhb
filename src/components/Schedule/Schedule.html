@@ -40,8 +40,12 @@
                      class="controls-Schedule__grid-cell">
 
                     <div v-if="lesson.type===1"
-                         class="controls-Schedule__lesson bg-color-orange"
-                    >{{ lesson.id }}
+                         class="controls-Schedule__lesson"
+                         :class="'bg-color-'+lessons[lesson.id].color"
+                    >
+                        <span class="controls-Schedule__lesson-name">{{ lessons[lesson.id].title }}, {{ lessons[lesson.id].type }}</span>
+                        <span class="controls-Schedule__lesson-room">{{ lessons[lesson.id].room }}</span>
+                        <span class="controls-Schedule__lesson-teacher">{{ lessons[lesson.id].teacher }}</span>
                     </div>
 
                 </div>

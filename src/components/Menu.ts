@@ -1,6 +1,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import template from './Menu/Menu.html'
 import './Menu/Menu.scss'
+import * as Types from './../vendor/types/types';
 
 interface MenuItem {
     caption: string;

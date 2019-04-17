@@ -73,39 +73,47 @@
   cursor: default;
 }
 
-/* Первая строка осталась без границы сверху, добавляем */
-.controls-Schedule__grid-row:first-child .controls-Schedule__grid-cell {
-  border-top-width: 1px;
+.controls-Schedule__grid-row{
+  /* Первая строка осталась без границы сверху, добавляем */
+  &:first-child .controls-Schedule__grid-cell {
+    border-top-width: 1px;
+  }
+  &:last-child {
+    .controls-Schedule__grid-cell__time{
+      border-bottom-width: 1px;
+    }
+    .controls-Schedule__grid-cell{
+      border-left: 0;
+      border-right-width: 0;
+      &:last-child{
+        border-right-width: 1px;
+      }
+    }
+  }
 }
 
-
-/* Последняя ячейка в строке осталась без границы справа, добавляем */
-.controls-Schedule__grid-cell:last-child {
-  border-right-width: 1px;
+.controls-Schedule__grid-cell{
+  &.controls-Schedule__grid-cell__time {
+    border-width: 0;
+  }
+  &:first-child  {
+    border-left-width: 0;
+  }
+  /* Последняя ячейка в строке осталась без границы справа, добавляем */
+  &:last-child {
+    border-right-width: 1px;
+  }
 }
 
-.controls-Schedule__grid-cell.controls-Schedule__grid-cell__time {
-  border-width: 0;
-
-}
 .controls-Schedule__fake-for-time {
   border-width: 0;
   border-bottom-width: 1px;
-}
-.controls-Schedule__fake-for-time:first-child {
-  border-left-width: 1px;
-}
-
-.controls-Schedule__grid-row:last-child .controls-Schedule__grid-cell__time {
-  border-bottom-width: 1px;
+  &:first-child {
+    border-left-width: 1px;
+  }
 }
 
-.controls-Schedule__grid-cell:first-child  {
-  border-left-width: 0;
-}
-.controls-Schedule__grid-cell:last  {
-  border-right-width: 0;
-}
+
 
 
   /* === Границы ячеек === */

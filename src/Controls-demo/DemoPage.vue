@@ -4,12 +4,12 @@
         <div class="center">
             <Schedule caption="Расписание занятий"
                       captionPosition="right"
-                      :times="this.times"
-                      :lessons="this.lessons"
-                      :schedule="this.schedule"/>
+                      :times="times"
+                      :lessons="lessons"
+                      :schedule="schedule"/>
         </div>
         <div class="leftSide">
-            <Menu caption="Меню" class="stickyMenu" :items="this.items"/>
+            <Menu caption="Меню" class="stickyMenu" :items="items"/>
         </div>
     </div>
 </template>
@@ -31,368 +31,6 @@
       },
       data() {
          return {
-            lessons: [
-               {
-                  id: 1,
-                  title: 'WEB технологии',
-                  teacher: 'Никитенко А.В.',
-                  type: 'л.р.'
-               },
-               {
-                  id: 2,
-                  title: 'Прикладная физическая культура',
-                  teacher: '',
-                  type: 'пр.з.'
-               },
-               {
-                  id: 3,
-                  title: 'Англ. яз.',
-                  teacher: 'Иванова А.В.',
-                  type: 'пр.з.'
-               }
-            ],
-            times: [
-               '8:30',
-               '10:00',
-               '10:10',
-               '11:40',
-               '12:20',
-               '13:50',
-               '14:00',
-               '15:30',
-               '15:40',
-               '17:10',
-               '17:20',
-               '18:50'
-            ],
-            schedule: {
-               header: [
-                  {
-                     dayName: 'Понедельник',
-                     dayData: '11'
-                  },
-                  {
-                     dayName: 'Вторник',
-                     dayData: '12'
-                  },
-                  {
-                     dayName: 'Среда',
-                     dayData: '13'
-                  },
-                  {
-                     dayName: 'Четверг',
-                     dayData: '14'
-                  },
-                  {
-                     dayName: 'Пятница',
-                     dayData: '15'
-                  },
-                  {
-                     dayName: 'Суббота',
-                     dayData: '16'
-                  }
-
-               ],
-               rows: [
-                  {
-                     type: Type.Lesson,
-                     lessons: [
-                        {
-                           lessonEnd: '13:50',
-                           type: Type.Lesson,
-                           id: 1,
-                           hasContinue: true
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Lesson,
-                           id: 1,
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        }
-                     ]
-                  },
-                  {
-                     type: Type.Break,
-                     lessons: [
-                        {
-                           lessonEnd: '13:50',
-                           type: Type.Lesson,
-                           id: 1,
-                           hasContinue: true
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Lesson,
-                           id: 1,
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        }
-                     ]
-                  },
-                  {
-                     type: Type.Lesson,
-                     lessons: [
-                        {
-                           lessonEnd: '13:50',
-                           type: Type.Lesson,
-                           id: 1,
-                           hasContinue: true
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Lesson,
-                           id: 1,
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        }
-                     ]
-                  },
-                  {
-                     type: Type.Break,
-                     lessons: [
-                        {
-                           lessonEnd: '13:50',
-                           type: Type.Lesson,
-                           id: 1,
-                           hasContinue: true
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Lesson,
-                           id: 1,
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        }
-                     ]
-                  },
-                  {
-                     type: Type.Lesson,
-                     lessons: [
-                        {
-                           lessonEnd: '13:50',
-                           type: Type.Lesson,
-                           id: 1,
-                           hasContinue: true
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Lesson,
-                           id: 1,
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        }
-                     ]
-                  },
-                  {
-                     type: Type.Break,
-                     lessons: [
-                        {
-                           lessonEnd: '13:50',
-                           type: Type.Lesson,
-                           id: 1,
-                           hasContinue: true
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Lesson,
-                           id: 1,
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        }
-                     ]
-                  },
-                  {
-                     type: Type.Lesson,
-                     lessons: [
-                        {
-                           lessonEnd: '13:50',
-                           type: Type.Lesson,
-                           id: 1,
-                           hasContinue: true
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Lesson,
-                           id: 1,
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        }
-                     ]
-                  },
-                  {
-                     type: Type.Break,
-                     lessons: [
-                        {
-                           lessonEnd: '13:50',
-                           type: Type.Lesson,
-                           id: 1,
-                           hasContinue: true
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Lesson,
-                           id: 1,
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        }
-                     ]
-                  },
-                  {
-                     type: Type.Lesson,
-                     lessons: [
-                        {
-                           lessonEnd: '13:50',
-                           type: Type.Lesson,
-                           id: 1,
-                           hasContinue: true
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Lesson,
-                           id: 1,
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        }
-                     ]
-                  },
-                  {
-                     type: Type.Break,
-                     lessons: [
-                        {
-                           lessonEnd: '13:50',
-                           type: Type.Lesson,
-                           id: 1,
-                           hasContinue: true
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Lesson,
-                           id: 1,
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        }
-                     ]
-                  },
-                  {
-                     type: Type.Lesson,
-                     lessons: [
-                        {
-                           lessonEnd: '13:50',
-                           type: Type.Lesson,
-                           id: 1,
-                           hasContinue: true
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Lesson,
-                           id: 1,
-                        },
-                        {
-                           type: Type.Window
-                        },
-                        {
-                           type: Type.Window
-                        }
-                     ]
-                  }
-               ]
-            },
             items: [
                {
                   caption: 'Пункт меню 1',
@@ -434,7 +72,82 @@
                   caption: 'Пункт меню 10',
                   to: '#10'
                }
-            ]
+            ],
+            times: [
+               {
+                  start: '8:30',
+                  stop: '10:00',
+                  type: TimeIntervalType.Lesson
+               },
+               {
+                  start: '10:00',
+                  stop: '10:10',
+                  type: TimeIntervalType.Break
+               },
+               {
+                  start: '10:10',
+                  stop: '11:40',
+                  type: TimeIntervalType.Lesson
+               },
+               {
+                  start: '11:40',
+                  stop: '12:20',
+                  type: TimeIntervalType.Break
+               },
+               {
+                  start: '12:20',
+                  stop: '13:50',
+                  type: TimeIntervalType.Lesson
+               },
+               {
+                  start: '13:50',
+                  stop: '14:00',
+                  type: TimeIntervalType.Break
+               },
+               {
+                  start: '14:00',
+                  stop: '15:30',
+                  type: TimeIntervalType.Lesson
+               },
+               {
+                  start: '15:30',
+                  stop: '15:40',
+                  type: TimeIntervalType.Break
+               },
+               {
+                  start: '15:40',
+                  stop: '17:10',
+                  type: TimeIntervalType.Lesson
+               },
+               {
+                  start: '17:10',
+                  stop: '17:20',
+                  type: TimeIntervalType.Break
+               },
+               {
+                  start: '17:20',
+                  stop: '18:50',
+                  type: TimeIntervalType.Lesson
+               }
+            ],
+            lessons: {
+               1: {
+                  title: 'WEB технологии',
+                  teacher: 'Никитенко А.В.',
+                  defaultRoom: 'А-404',
+                  type: 'Lection',
+                  color: 'orange'
+               }
+            },
+            schedule:{
+               "monday": [
+                  {
+                     id: 1,
+                     times: [0,2,4],
+                     room: 'Г-207'
+                  }
+               ]
+            }
          }
       }
    }

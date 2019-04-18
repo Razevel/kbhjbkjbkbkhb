@@ -1,123 +1,13 @@
-var exampleIn = {
-    "times": [],
-    "lessons": {
-        "123": {
-            "title": "Предмет 1",
-            "teacher": "Somebody"
-        }
-    },
-    "schedule": {
-        "monday": [
-            {
-                "id": "123",
-                "type": 'praktika',
-                "times": [1, 2, 3]
-            }
-        ]
-    }
-};
-
-var exampleOut = [
-    {
-        start: "8:30",
-        end: "10:00",
-        type: 'Para',
-        lessons: [
-            //Monday..(1 less)
-            {
-                id: 1,
-                title: "Predmet kakouto",
-                teacher: 'Ktoto',
-                room: '200',
-                hasMore: true
-            },
-            //Thursday..
-            {}
-        ],
-    },
-    {
-        start: "10:00",
-        end: "10:10",
-        type: 'Peremena',
-    },
-];
-
-
-type InScheduleLesson = {
-    id: string | number;
-    times: Array<number>;
-    room?: string;
-}
-
-type InDay = Array<InScheduleLesson>;
-
-type InSchedule = {
-    [key: string]: InDay
-}
-
-enum LessonType {
-    Lab = 'lab',
-    Practice = 'practice',
-    Lection = 'lection'
-}
-
-type InLesson = {
-    title: string;
-    teacher: string;
-    type: LessonType;
-    defaultRoom: string;
-}
-type InLessons = {
-    [key: string]: InLesson
-}
-
-type InTimes = Array<InTime>
-
-
-type InTime = {
-    type: TimeIntervalType;
-    start: string;
-    stop: string;
-}
-
-enum TimeIntervalType {
-    Lesson = 'lesson',
-    Break = 'break',
-    Window = 'window'
-}
-
-type OutLesson = {
-    id: string | number;
-    title: string;
-    teacher: string;
-    room: string;
-    type: LessonType;
-}
-
-type OutSchedule = Array<OutScheduleRow>;
-
-type OutScheduleRow = InTime & {
-    days: Array<OutDay>
-}
-
-type OutDay = {
-    dayName: string;
-    hasMoreThanOne: boolean;
-    hasLesson: boolean;
-    lessons: Array<OutLesson>;
-}
+import {
+    TimeIntervalType, LessonType, InSchedule,
+    InLessons, ScheduleTable, ScheduleTableRow, ScheduleTableCell, InTime
+} from './types'
 
 const weekDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
-type ScheduleForRender = {
-    header: any,
-    rows: OutSchedule
-    footer: any
-}
-function convert(schedule: InSchedule, lessons: InLessons, times: InTimes): ScheduleForRender {
-    debugger;
+function convert(schedule: InSchedule, lessons: InLessons, times: Array<InTime>): ScheduleTable {
     
-    let result: ScheduleForRender = {
+    let result: ScheduleTable = {
         header: [],
         rows: [],
         footer: {}
@@ -132,14 +22,14 @@ function convert(schedule: InSchedule, lessons: InLessons, times: InTimes): Sche
     
     // Идём по интервалам времени, это пары и перемены, посути строки таблицы
     times.forEach((timeInterval, tiIndex) => {
-        let scheduleRow: OutScheduleRow = { ...timeInterval, days: [] };
+        let scheduleRow: ScheduleTableRow = { ...timeInterval, days: [] };
         
         //Пройдемся по дням недели и соберем занятия на текущем промежутке времени (строке)
         weekDays.forEach((dayName, dayIndex) => {
             
             let
                 dayLessons = schedule[dayName],
-                outDay: OutDay = {
+                outDay: ScheduleTableCell = {
                     dayName,
                     hasLesson: false,
                     hasMoreThanOne: false,
@@ -179,22 +69,9 @@ function convert(schedule: InSchedule, lessons: InLessons, times: InTimes): Sche
 export {
     convert,
     TimeIntervalType,
-    
-    InSchedule,
-    InDay,
-    InScheduleLesson,
-    
-    InTimes,
-    InTime,
-    
-    InLessons,
-    InLesson,
     LessonType,
     
-    OutSchedule,
-    OutScheduleRow,
-    OutDay,
-    OutLesson,
-    
-    ScheduleForRender
+    ScheduleTable,
+    ScheduleTableRow,
+    ScheduleTableCell
 }

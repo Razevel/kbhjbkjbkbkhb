@@ -2,8 +2,10 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import template from './Schedule/Schedule.html'
 import './Schedule/Schedule.scss'
 import {
-    convert, InSchedule, OutSchedule, InTimes, InTime, TimeIntervalType,
-    ScheduleForRender
+    convert,
+    TimeIntervalType,
+    LessonType,
+    ScheduleTable
 } from './Schedule/JSONToSchedule';
 
 @template
@@ -31,7 +33,7 @@ class Schedule extends Vue {
         }
     }
     
-    private get ScheduleData(): ScheduleForRender {
+    private get ScheduleData(): ScheduleTable {
         return convert(this.$props.schedule, this.$props.lessons, this.$props.times);
     }
     
@@ -39,7 +41,7 @@ class Schedule extends Vue {
 
 export {
     Schedule,
-    InTimes,
-    InTime,
-    TimeIntervalType
+    TimeIntervalType,
+    LessonType,
+    ScheduleTable
 }

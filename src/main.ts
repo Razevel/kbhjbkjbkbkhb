@@ -3,12 +3,14 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './registerServiceWorker'
-import {LocalPluginObject, TFPluginObject} from './vendor/i18n'
+import PluginCreator from './vendor/VuePluginCreator'
+
+import {lc, ucFirst} from './vendor/i18n'
 
 Vue.config.productionTip = false;
 
-Vue.use(LocalPluginObject);
-Vue.use(TFPluginObject);
+Vue.use(PluginCreator.createPluginFunction(ucFirst));
+Vue.use(PluginCreator.createPluginFunction(lc));
 
 new Vue({
   router,

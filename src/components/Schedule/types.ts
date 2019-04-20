@@ -12,6 +12,11 @@ export enum TimeIntervalType {
 
 
 
+export type DaysData = {
+    [key: string]: string
+}
+
+
 
 // =================== In: time intervals
 
@@ -93,5 +98,5 @@ export type ScheduleTableCell = {
     room: string;
     type: LessonType;
 }
-
+export {OutLesson as ScheduleTableDayLessons};
 // =================== Out, ready for render

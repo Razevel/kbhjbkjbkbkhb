@@ -5,12 +5,14 @@ import store from './store'
 import './registerServiceWorker'
 import PluginCreator from './vendor/VuePluginCreator'
 
-import {lc, ucFirst} from './vendor/i18n'
+import {lc, ucFirst, cut, expand} from './vendor/i18n'
 
 Vue.config.productionTip = false;
 
-Vue.use(PluginCreator.createPluginFunction(ucFirst));
-Vue.use(PluginCreator.createPluginFunction(lc));
+Vue.use(PluginCreator.createPluginFunction(ucFirst, 'ucFirst'));
+Vue.use(PluginCreator.createPluginFunction(lc, 'lc'));
+Vue.use(PluginCreator.createPluginFunction(cut, 'cut'));
+Vue.use(PluginCreator.createPluginFunction(expand, 'expand'));
 
 new Vue({
   router,

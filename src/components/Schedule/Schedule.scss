@@ -1,150 +1,37 @@
-.controls-Schedule__inner-wrapper {
-  background-color: #fff;
-  border-radius: 5px 5px 0 0;
-  box-shadow: 0 0 1.5px 0.5px rgba(215, 216, 219, 0.8);
-}
-
-.controls-Schedule__caption-aligner{}
-
-.controls-Schedule__caption {
-  color: #d7d8db;
-  position: relative;
-  display: flex;
-  margin-bottom: 1px;
-  padding: 0 12px;
-  font-size: 14px;
-  span {
-    margin: 0;
-    padding: 0 3px;
-    background-color: #fff;
-    font-family: 'LatoWebSemibold', sans-serif;
-  }
-  &:after {
-    content: '\200b';
-    z-index: -1;
-    position: absolute;
-    border: 1px solid #d7d8db;
-    border-radius: 3px;
-    width: calc(100% - 14px);
-    left: 7px;
-    background-color: transparent;
-    top: 50%;
-  }
-}
-
-.controls-Schedule__caption_center {
-  justify-content: center;
-}
-.controls-Schedule__caption_left {
-  justify-content: flex-start;
-}
-.controls-Schedule__caption_right {
-  justify-content: flex-end;
-}
-
-.controls-Schedule__header {
-  min-height: 55px;
-}
-
 .controls-Schedule__grid {
   display: grid;
-  grid-template-columns: 15px auto 15px repeat(6, 1fr);
-  font-family: 'Lato', 'Open Sans', sans-serif;
-  color: #2c2c2c;
+  grid-template-columns: $padding_controls-Schedule_time-label_left auto $padding_controls-Schedule_time-label_right repeat(6, 1fr);
+  font-family: $font-family_controls-Schedule;
+  color: $color_controls-Schedule;
 }
 
 .controls-Schedule__grid-row {
   display: contents;
 }
 
-.controls-Schedule__grid-row:hover {
-  .controls-Schedule__grid-cell {
-    background-color: lighten($blue_hover, 3);
-  }
+.controls-Schedule__grid-row:hover .controls-Schedule__grid-cell {
+  background-color: $background-color_controls-Schedule_row__hover;
+}
+
+.controls-Schedule__grid-row__header:hover .controls-Schedule__grid-cell {
+  background-color: initial;
+}
+
+.controls-Schedule__grid-row__end:hover .controls-Schedule__grid-cell {
+  background-color: initial;
+}
+
+.controls-Schedule__grid-row__header .controls-Schedule__grid__header-cell.controls-Schedule__grid__header-cell_hovered,
+.controls-Schedule__grid__cell_hovered {
+  background-color: $background-color_controls-Schedule_column__hover;
 }
 
 /* === Границы ячеек === */
-
-/* У всех ячеек граница есть снизу и слева, чтобы сохранить ширину в 1 пиксель */
-.controls-Schedule__grid-cell {
-  border: 1px solid #dbdbdb;
-  border-top-width: 0;
-  border-right-width: 0;
-  cursor: default;
-}
-
-.controls-Schedule__grid-row{
-  /* Первая строка осталась без границы сверху, добавляем */
-  &:first-child .controls-Schedule__grid-cell {
-    border-top-width: 1px;
-  }
-  &:last-child {
-    .controls-Schedule__grid-cell__time{
-      border-bottom-width: 1px;
-    }
-    .controls-Schedule__grid-cell{
-      border-left: 0;
-      border-right-width: 0;
-      &:last-child{
-        border-right-width: 1px;
-      }
-    }
-  }
-}
-
-.controls-Schedule__grid-cell{
-  &.controls-Schedule__grid-cell__time {
-    border-width: 0;
-  }
-  &:first-child  {
-    border-left-width: 0;
-  }
-  /* Последняя ячейка в строке осталась без границы справа, добавляем */
-  &:last-child {
-    border-right-width: 1px;
-  }
-}
-
-.controls-Schedule__fake-for-time {
-  border-width: 0;
-  border-bottom-width: 1px;
-  &:first-child {
-    border-left-width: 1px;
-  }
-}
-
-
-
-
-  /* === Границы ячеек === */
-
-
-
-
-
+@import "GridStyles/Borders";
 
 /* === Высоты строк === */
+@import "GridStyles/RowHeights";
 
-/* Шапка таблицы с названием дней */
-.controls-Schedule__grid-row__day-names .controls-Schedule__grid-cell {
-  height: 50px;
-}
-
-/* Строка урока */
-.controls-Schedule__grid-row__lesson .controls-Schedule__grid-cell {
-  height: 100px;
-}
-
-/* Строка перемены */
-.controls-Schedule__grid-row__break .controls-Schedule__grid-cell {
-  height: 50px;
-}
-
-.controls-Schedule__grid-row__end .controls-Schedule__grid-cell {
-  height: 30px;
-}
-
-/* === Высоты строк === */
 
 .controls-Schedule__grid-cell__day-name {
   position: relative;
@@ -163,6 +50,10 @@
   font-size: 14px;
   top: 2px;
   right: 2px;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .controls-Schedule__grid-cell__time__wrapper {
@@ -193,10 +84,6 @@ $padding_lesson-cell: 3px;
   cursor: pointer;
 }
 
-.controls-Schedule__lesson-name {
-
-}
-
 .controls-Schedule__lesson-room {
   order: -1;
 }
@@ -205,30 +92,5 @@ $padding_lesson-cell: 3px;
   display: none;
 }
 
-.bg-color-orange {
-  @include shedule-lesson-bg-color(#f6b067);
-}
-
-.bg-color-violet {
-  @include shedule-lesson-bg-color(lighten(#443453, 30), #443453, .8);
-}
-
-.bg-color-moreen {
-  @include shedule-lesson-bg-color(#4db6ac);
-}
-
-.bg-color-pink {
-  @include shedule-lesson-bg-color(#ef9a9a);
-}
-
-.bg-color-yellow {
-  @include shedule-lesson-bg-color(rgba(darken(#ffd14f, 10), 0.1));
-}
-
-.bg-color-red {
-  @include shedule-lesson-bg-color(#da4453, #951029, 1, 1);
-}
-
-.bg-color-green {
-  @include shedule-lesson-bg-color(#a1ecae);
-}
+// Цвета уроков
+@import "GridStyles/LessonsColors";

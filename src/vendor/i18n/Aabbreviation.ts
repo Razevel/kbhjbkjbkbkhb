@@ -1,11 +1,9 @@
-const a = {}
+import dictionary from './dictionaries/Aabbreviation'
 
-
-
-function cut(str: string): string {
-
+export function cut(str: string): string {
+    return dictionary.to[str];
 }
 
-function expand(str: string): string {
-
+export function expand(str: string): string {
+    return dictionary.from[str];
 }

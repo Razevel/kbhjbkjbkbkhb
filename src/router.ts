@@ -38,7 +38,26 @@ export default new Router({
             path: '/Controls-demo/DemoPage',
             name: '/Controls-demo/DemoPage',
             component: DemoPages.DemoPage
+        },
+        {
+            path: '/Controls-demo/PlainPanel',
+            name: '/Controls-demo/PlainPanel',
+            component: DemoPages.PlainPanel
+        },
+        {
+            path: '/Controls-demo/Footer',
+            name: '/Controls-demo/Footer',
+            component: DemoPages.Footer
+        },
+        {
+            path: '/Controls-demo/SearchForm',
+            name: '/Controls-demo/SearchForm',
+            component: DemoPages.SearchForm
+        },
+        {
+            path: '/Controls-demo/PlainPanel',
+            name: '/Controls-demo/PlainPanel',
+            component: DemoPages.PlainPanel
         }
-
     ]
 })

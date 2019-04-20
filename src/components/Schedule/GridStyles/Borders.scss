@@ -1,0 +1,51 @@
+/* У всех ячеек граница есть снизу и слева, чтобы сохранить ширину в 1 пиксель */
+.controls-Schedule__grid-cell {
+  border: 1px solid #dbdbdb;
+  border-top-width: 0;
+  border-right-width: 0;
+  cursor: default;
+  /* Последняя ячейка в строке осталась без границы справа, добавляем */
+  &:last-child {
+    border-right-width: 1px;
+  }
+}
+
+/* Первая строка осталась без границы сверху, добавляем */
+.controls-Schedule__grid-row:first-child .controls-Schedule__grid-cell {
+  border-top-width: 1px;
+}
+
+// Колонка времени состоит из трех колонок.
+// Колонка-отступ - Время - Колонка-отступ
+// У времени границ нет.
+.controls-Schedule__grid-cell.controls-Schedule__grid-cell__time {
+  border-width: 0;
+}
+// Кроме времени в последней строке, там должна быть граница снизу
+.controls-Schedule__grid-row:last-child .controls-Schedule__grid-cell__time {
+  border-bottom-width: 1px;
+}
+
+// Колонки-отступы должны иметь границу только снизу. Это линия между временем и соседней колонкой
+.controls-Schedule__fake-for-time {
+  border-width: 0;
+  border-bottom-width: 1px;
+  // Кроме первой ячейки, т.к. она - первая ячейка в строке, добавим ей левую границу
+  &:first-child {
+    border-left-width: 1px;
+  }
+}
+
+// В последней строке должны быть только внешние границы
+.controls-Schedule__grid-row__end {
+  .controls-Schedule__grid-cell {
+    border-left-width: 0;
+    border-right-width: 0;
+    &:first-child {
+      border-left-width: 1px;
+    }
+    &:last-child {
+      border-right-width: 1px;
+    }
+  }
+}

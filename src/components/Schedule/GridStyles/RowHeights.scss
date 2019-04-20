@@ -1,0 +1,19 @@
+/* Шапка таблицы с названием дней */
+.controls-Schedule__grid-row__day-names .controls-Schedule__grid-cell {
+  height: 50px;
+}
+
+/* Строка урока */
+.controls-Schedule__grid-row__lesson .controls-Schedule__grid-cell {
+  height: 100px;
+}
+
+/* Строка перемены */
+.controls-Schedule__grid-row__break .controls-Schedule__grid-cell {
+  height: 50px;
+}
+
+/* Последняя строка(пустая) */
+.controls-Schedule__grid-row__end .controls-Schedule__grid-cell {
+  height: 30px;
+}

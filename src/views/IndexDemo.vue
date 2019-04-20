@@ -35,6 +35,18 @@
                 {
                    caption: 'DemoPage',
                    to: '/Controls-demo/DemoPage'
+                },
+                {
+                   caption: 'PlainPanel',
+                   to: '/Controls-demo/PlainPanel'
+                },
+                {
+                   caption: 'Footer',
+                   to: '/Controls-demo/Footer'
+                },
+                {
+                   caption: 'SearchForm',
+                   to: '/Controls-demo/SearchForm'
                 }
              ]
           }

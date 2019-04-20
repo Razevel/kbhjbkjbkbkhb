@@ -4,6 +4,7 @@
               captionPosition="right"
               :times="times"
               :lessons="lessons"
+              :daysData="weekDays"
               style="width: 800px; margin: 10px auto;"
               :schedule="schedule"/>
 </template>
@@ -82,6 +83,15 @@
                   type: LessonType.Lection,
                   color: 'orange'
                }
+            },
+            weekDays: {
+               'monday': '11',
+               'tuesday': '12',
+               'wednesday': '13',
+               'thursday': '14',
+               'friday': '15',
+               'saturday': '16',
+               'sunday': '17'
             },
             schedule:{
                "monday": [

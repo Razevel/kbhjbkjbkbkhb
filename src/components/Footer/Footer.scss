@@ -1,0 +1,48 @@
+.controls-Footer__column-content {
+  display: flex;
+  padding: 10px;
+}
+.controls-Footer__topRow_content-wrapper{
+  padding: 20px 50px;
+}
+.controls-Footer__logo-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+.controls-Footer__logo {
+  width: 200px;
+  height: 65px;
+  font-size: 18px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background-image: url("./../../assets/LogoFull.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.controls-Footer__bottomRow_content-wrapper {
+  border-top: 1px solid rgba(145, 145, 145, 0.24);
+}
+.controls-Footer__bottomRow_content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 18px;
+  a {
+    color: #7a7a7a;
+    text-decoration: underline dotted;
+  }
+}
+.controls-Footer__bottomRow__right-side {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}

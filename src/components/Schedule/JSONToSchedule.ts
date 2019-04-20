@@ -1,11 +1,21 @@
 import {
-    TimeIntervalType, LessonType, InSchedule,
+    TimeIntervalType, LessonType, InSchedule, ScheduleTableDayLessons,
     InLessons, ScheduleTable, ScheduleTableRow, ScheduleTableCell, InTime
 } from './types'
+import { DaysData } from "@/components/Schedule/types";
 
-const weekDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+enum Week {
+    Monday='monday',
+    Tuesday='tuesday',
+    Wednesday = 'wednesday',
+    Thursday = 'thursday',
+    Friday = 'friday',
+    Saturday = 'saturday'
+}
 
-function convert(schedule: InSchedule, lessons: InLessons, times: Array<InTime>): ScheduleTable {
+const weekDays: Array<Week> = [Week.Monday, Week.Tuesday, Week.Wednesday, Week.Thursday, Week.Friday, Week.Saturday];
+
+function convert(schedule: InSchedule, lessons: InLessons, times: Array<InTime>, daysData: DaysData): ScheduleTable {
     
     let result: ScheduleTable = {
         header: [],
@@ -16,7 +26,7 @@ function convert(schedule: InSchedule, lessons: InLessons, times: Array<InTime>)
     weekDays.forEach(dayName => {
         result.header.push({
             dayName,
-            dayData: '123'
+            dayData: daysData[dayName]
         });
     });
     
@@ -70,8 +80,9 @@ export {
     convert,
     TimeIntervalType,
     LessonType,
-    
+    Week,
     ScheduleTable,
     ScheduleTableRow,
-    ScheduleTableCell
+    ScheduleTableCell,
+    ScheduleTableDayLessons
 }

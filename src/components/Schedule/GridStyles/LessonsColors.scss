@@ -1,0 +1,27 @@
+.bg-color-orange {
+  @include shedule-lesson-bg-color(#f6b067);
+}
+
+.bg-color-violet {
+  @include shedule-lesson-bg-color(lighten(#443453, 30), #443453, .8);
+}
+
+.bg-color-moreen {
+  @include shedule-lesson-bg-color(#4db6ac);
+}
+
+.bg-color-pink {
+  @include shedule-lesson-bg-color(#ef9a9a);
+}
+
+.bg-color-yellow {
+  @include shedule-lesson-bg-color(rgba(darken(#ffd14f, 10), 0.1));
+}
+
+.bg-color-red {
+  @include shedule-lesson-bg-color(#da4453, #951029, 1, 1);
+}
+
+.bg-color-green {
+  @include shedule-lesson-bg-color(#a1ecae);
+}

@@ -1,0 +1,21 @@
+<div class="controls-Layout">
+  <div class="controls-Layout__wrapper">
+    <div class="controls-Layout__content-wrapper" :style="ColumnsTemplate">
+
+      <div v-if="$slots.topRow" class="controls-Layout__column controls-Layout__topRow" :style="TopRowStyles">
+        <slot name="topRow"></slot>
+      </div>
+
+      <div v-for="cIndex in columnsCount"
+           class="controls-Layout__column"
+           :class="'controls-Layout__column-'+cIndex">
+        <slot :name="'column'+cIndex"></slot>
+      </div>
+
+      <div v-if="$slots.bottomRow" class="controls-Layout__column controls-Layout__bottomRow" :style="BottomRowStyles">
+        <slot name="bottomRow"></slot>
+      </div>
+
+    </div>
+  </div>
+</div>

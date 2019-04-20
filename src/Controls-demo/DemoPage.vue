@@ -1,22 +1,31 @@
 <template>
-    <div class="wrapper">
+  <div class="wrapper">
 
-        <div class="center">
-            <Schedule caption="Расписание занятий"
-                      captionPosition="right"
-                      :times="times"
-                      :lessons="lessons"
-                      :schedule="schedule"/>
-        </div>
-        <div class="leftSide">
-            <Menu caption="Меню" class="stickyMenu" :items="items"/>
-        </div>
+    <div class="center">
+      <Panel caption="Расписание занятий">
+        <template v-slot:header>&nbsp;</template>
+
+        <template v-slot:body>
+          <Schedule caption="Расписание занятий"
+                    captionPosition="right"
+                    :times="times"
+                    :lessons="lessons"
+                    :daysData="weekDays"
+                    :schedule="schedule"/>
+        </template>
+      </Panel>
+
     </div>
+    <div class="leftSide">
+      <Menu caption="Меню" class="stickyMenu" :items="items"/>
+    </div>
+  </div>
 </template>
 
 <script>
    import Menu from "./../components/Menu.ts";
-   import Schedule from "./../components/Shedule.ts"
+   import { Schedule, TimeIntervalType, LessonType } from "./../components/Shedule.ts"
+   import Panel from './../components/Panels/Plane'
 
    const Type = {
       Window: 0,
@@ -26,6 +35,7 @@
 
    export default {
       components: {
+         Panel,
          Schedule,
          Menu
       },
@@ -135,45 +145,57 @@
                   title: 'WEB технологии',
                   teacher: 'Никитенко А.В.',
                   defaultRoom: 'А-404',
-                  type: 'Lection',
+                  type: LessonType.Lection,
                   color: 'orange'
                }
             },
-            schedule:{
+            schedule: {
                "monday": [
                   {
                      id: 1,
-                     times: [0,2,4],
+                     times: [0, 2, 4],
                      room: 'Г-207'
                   }
                ]
-            }
+            },
+            weekDays: {
+               'monday': '11',
+               'tuesday': '12',
+               'wednesday': '13',
+               'thursday': '14',
+               'friday': '15',
+               'saturday': '16',
+               'sunday': '17'
+            },
          }
       }
    }
 </script>
 
 <style scoped>
-    .wrapper {
-        display: flex;
-        width: 1280px;
-        margin: 0 auto;
-        margin-top: 10px;
+  .wrapper {
+    display: flex;
+    width: 1280px;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding-bottom: 30px;
+    justify-content: space-between;
+  }
 
-        justify-content: space-between;
-    }
-    .stickyMenu {
-        position: sticky;
-        top: 50px;
-    }
-    .leftSide {
-        width: 200px;
-        margin-left: 30px;
-        margin-right: 10px;
-    }
-    .center {
-        flex-grow: 1;
-        margin-left: 10px;
-        margin-right: 30px;
-    }
+  .stickyMenu {
+    position: sticky;
+    top: 50px;
+  }
+
+  .leftSide {
+    width: 200px;
+    margin-left: 30px;
+    margin-right: 10px;
+  }
+
+  .center {
+    flex-grow: 1;
+    margin-left: 10px;
+    margin-right: 30px;
+  }
 </style>

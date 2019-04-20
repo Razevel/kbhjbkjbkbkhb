@@ -5,6 +5,7 @@
   font-size: 14px;
   z-index: 1;
 }
+
 .controls-Menu__caption {
   color: #d7d8db;
   position: relative;
@@ -27,6 +28,7 @@
     top: 50%;
   }
 }
+
 .controls-Menu__list {
   border-radius: 5px;
   background-color: rgb(255, 255, 255);
@@ -43,7 +45,8 @@
   margin: 0;
   cursor: pointer;
 }
-.controls-Menu__link{
+
+.controls-Menu__link {
   position: relative;
   display: flex;
   align-items: center;
@@ -56,7 +59,8 @@
   }
   &_active {
     background-color: rgba($blue_hover, 0.6);
-    &:after {
+    &:after,
+    &:before {
       content: '\200b';
       display: block;
       width: 2px;
@@ -64,7 +68,37 @@
       background-color: #f07c00;
       top: 0;
       bottom: 1px;
+    }
+  }
+}
+
+.controls-Menu__list_marker_disabled {
+  .controls-Menu__link_active {
+    &:after,
+    &:before {
+      content: none;
+    }
+  }
+}
+
+.controls-Menu__list_marker_left {
+    .controls-Menu__link_active {
+      &:after {
+        content: none;
+      }
+      &:before {
+        left: 0;
+      }
+    }
+  }
+
+.controls-Menu__list_marker_right {
+  .controls-Menu__link_active {
+    &:after{
       right: 0;
+    }
+    &:before {
+      content: none;
     }
   }
 }

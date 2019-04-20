@@ -1,16 +1,17 @@
 <div class="controls-Menu__wrapper">
-    <div v-if="!!this.caption" class="controls-Menu__caption">
-        <span>{{ this.caption }}</span>
-    </div>
-    <ul class="controls-Menu__list">
-        <li v-for="item in this._items" class="controls-Menu__list-item">
-            <router-link
-                    :to="item.to"
-                    append
-                    class="controls-Menu__link"
-                    active-class="controls-Menu__link_active"
-            >{{ item.caption }}
-            </router-link>
-        </li>
-    </ul>
+    <Panel :caption="caption">
+        <template v-slot:body :items="_items" :classList="classList">
+            <ul class="controls-Menu__list" :class="classList">
+                <li v-for="item in items" class="controls-Menu__list-item">
+                    <router-link
+                        :to="item.to"
+                        append
+                        class="controls-Menu__link"
+                        active-class="controls-Menu__link_active"
+                    >{{ item.caption }}
+                    </router-link>
+                </li>
+            </ul>
+        </template>
+    </Panel>
 </div>

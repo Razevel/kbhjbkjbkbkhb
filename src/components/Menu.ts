@@ -1,7 +1,9 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import template from './Menu/Menu.html'
 import './Menu/Menu.scss'
-import * as Types from './../vendor/types/types';
+import Panel from './Panels/Plane'
+import stringify = Mocha.utils.stringify;
+
 
 interface MenuItem {
     caption: string;
@@ -9,13 +11,28 @@ interface MenuItem {
     group?: string;
 }
 
+enum MarkerPosition {
+    Left = 'left',
+    Right = 'right'
+}
 
 @template
 @Component({
     props: {
         items: Array as () => Array<MenuItem>,
         isWithGroups: Boolean,
-        caption: String
+        caption: String,
+        marker: {
+            type: Boolean,
+            default: true
+        },
+        markerPosition: {
+            type: String,
+            default: 'right'
+        }
+    },
+    components: {
+        Panel
     }
 })
 export default class Menu extends Vue{
@@ -23,8 +40,11 @@ export default class Menu extends Vue{
     private get _items(): Array<MenuItem> {
         return this.$props.items;
     }
-    
-    constructor(){
-        super();
+    private get classList(): { [key:string]:boolean } {
+        return {
+            'controls-Menu__list_marker_disabled': !this.$props.marker,
+            'controls-Menu__list_marker_left': this.$props.markerPosition === MarkerPosition.Left,
+            'controls-Menu__list_marker_right': this.$props.markerPosition === MarkerPosition.Right
+        }
     }
 }

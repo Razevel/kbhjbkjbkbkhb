@@ -1,0 +1,19 @@
+.controls-Layout__wrapper {
+  display: flex;
+  justify-content: center;
+  background-color: #fcfcfc;
+  box-shadow: 0 -1px 10px 0.5px rgba(215, 216, 219, 0.8);
+}
+.controls-Layout__content-wrapper {
+  width: 1280px;
+  display: grid;
+}
+.controls-Layout__column {
+  overflow-wrap: break-word;
+}
+.controls-Layout__topRow {
+
+}
+.controls-Layout__bottomRow {
+
+}

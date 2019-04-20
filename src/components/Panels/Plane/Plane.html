@@ -1,0 +1,21 @@
+<div class="controls-Panel controls-PlainPanel">
+
+  <div class="controls-PlainPanel__wrapper">
+    <div v-if="caption" class="controls-PlainPanel__caption" :class="captionClasses">
+      <span>{{ caption }}</span>
+    </div>
+    <div class="controls-PlainPanel__content-wrapper">
+      <div v-if="$slots.header" class="controls-PlainPanel__header">
+        <slot name="header"></slot>
+      </div>
+      <div v-if="$slots.body" class="controls-PlainPanel__body">
+        <slot name="body"></slot>
+      </div>
+      <div v-if="$slots.footer" class="controls-PlainPanel__footer">
+        <slot name="footer"></slot>
+      </div>
+    </div>
+  </div>
+
+
+</div>

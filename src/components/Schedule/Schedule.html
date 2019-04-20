@@ -1,98 +1,99 @@
 <div class="controls-Schedule">
+  <!-- Schedule grid, main content -->
+  <div class="controls-Schedule__grid">
 
-  <!-- Caption -->
-  <div v-if="!!this.caption" class="controls-Schedule__caption" :class="captionClasses">
-    <span>{{ this.caption }}</span>
-  </div>
-  <!-- ./Caption -->
+    <!-- Day names, grid columns headers -->
+    <div class="controls-Schedule__grid-row controls-Schedule__grid-row__header controls-Schedule__grid-row__day-names">
 
-  <div class="controls-Schedule__inner-wrapper">
+      <!-- Face columns, make spacing for time cells -->
+      <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"
+           @mouseover="_onMouseOverRow(0, 0, 'header')" @mouseout="_onMouseOutRow(0, 0, 'header')"></div>
+      <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time"
+           @mouseover="_onMouseOverRow(0, 0, 'header')" @mouseout="_onMouseOutRow(0, 0, 'header')"></div>
+      <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"
+           @mouseover="_onMouseOverRow(0, 0, 'header')" @mouseout="_onMouseOutRow(0, 0, 'header')"></div>
+      <!-- ./Face columns, make spacing for time cells -->
 
-    <!-- Schedule header -->
-    <div class="controls-Schedule__header"></div>
-    <!-- ./Schedule header -->
+      <!-- Header cells -->
+      <div v-for="(day, headerCellIndex) in ScheduleData.header"
+           @mouseover="_onMouseOverRow(0, 1 + headerCellIndex, 'header')"
+           @mouseout="_onMouseOutRow(0, 1 + headerCellIndex, 'header')"
+           class="controls-Schedule__grid-cell controls-Schedule__grid__header-cell controls-Schedule__grid-cell__day-name"
+           :class="{'controls-Schedule__grid__header-cell_hovered': headerCellIndex+1 === $data._hoveredItem.cellIndex}">
 
-    <!-- Schedule grid, main content -->
-    <div class="controls-Schedule__grid">
-
-      <!-- Day names, grid columns headers -->
-      <div class="controls-Schedule__grid-row controls-Schedule__grid-row__day-names">
-
-        <!-- Face columns, make spacing for time cells -->
-        <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
-        <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time"></div>
-        <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
-        <!-- ./Face columns, make spacing for time cells -->
-
-        <!-- Header cells -->
-        <div v-for="day in ScheduleData.header"
-             class="controls-Schedule__grid-cell controls-Schedule__grid-cell__day-name">
-
-          <div class="controls-Schedule__day-name">{{ $ucFirst($lc(day.dayName)) }}<span
-              class="controls-Schedule__grid-row__day-number">{{ day.dayData }}
-            </span>
-          </div>
-
+        <div class="controls-Schedule__day-name">{{ $ucFirst($lc(day.dayName)) }}
+          <a href="#" @click.prevent="_onDayNumberClick(day)"
+             class="controls-Schedule__grid-row__day-number">{{ day.dayData }}</a>
         </div>
-        <!-- ./Header cells -->
 
       </div>
-      <!-- ./Day names, grid columns headers -->
-
-
-      <!-- Grid rows -->
-      <!-- Rows can contain lessons -->
-      <div v-for="(row, index) in ScheduleData.rows" class="controls-Schedule__grid-row"
-           :key="'schedule_day_row_'+index"
-           :class="rowClasses(index)">
-
-        <!-- RowTime -->
-        <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
-        <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
-          <div class="controls-Schedule__grid-cell__time__wrapper">
-            <span class="controls-Schedule__grid-cell__time__label">{{ times[index].start }}</span>
-          </div>
-        </div>
-        <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
-        <!-- ./RowTime -->
-
-
-        <!-- DayInTime-->
-        <div v-for="day in row.days" class="controls-Schedule__grid-cell">
-          <div v-for="lesson in day.lessons" class="controls-Schedule__lesson"
-               :class="'bg-color-'+lessons[lesson.id].color">
-            <span class="controls-Schedule__lesson-name">{{ lesson.title }}, {{ lesson.type }}</span>
-            <span class="controls-Schedule__lesson-room">{{ lesson.room }}</span>
-            <span class="controls-Schedule__lesson-teacher">{{ lesson.teacher }}</span>
-          </div>
-        </div>
-        <!-- ./DayInTime-->
-
-      </div>
-      <!-- ./Rows can contain lessons -->
-
-      <!-- Last grid row with end of last lesson-->
-      <div class="controls-Schedule__grid-row controls-Schedule__grid-row__end">
-        <!-- RowTime -->
-        <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
-        <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
-          <div class="controls-Schedule__grid-cell__time__wrapper">
-            <span class="controls-Schedule__grid-cell__time__label">{{ ScheduleData.rows[ScheduleData.rows.length-1].stop }}</span>
-          </div>
-        </div>
-        <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
-        <!-- ./RowTime -->
-
-        <div v-for="day in ScheduleData.rows[ScheduleData.rows.length-1].days"
-             class="controls-Schedule__grid-cell"></div>
-      </div>
-      <!-- ./Last grid row with end of last lesson-->
-
-      <!-- ./Grid rows -->
-
+      <!-- ./Header cells -->
 
     </div>
-    <!-- ./Schedule grid, main content -->
+    <!-- ./Day names, grid columns headers -->
+
+
+    <!-- Grid rows -->
+    <!-- Rows can contain lessons -->
+    <div v-for="(row, rowIndex) in ScheduleData.rows" class="controls-Schedule__grid-row"
+         :key="'schedule_day_row_'+rowIndex"
+         :class="rowClasses(rowIndex)">
+
+      <!-- RowTime -->
+      <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"
+           @mouseover="_onMouseOverRow(rowIndex+1, 0, 'body')" @mouseout="_onMouseOutRow(rowIndex+1, 0, 'body')"></div>
+      <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time"
+           @mouseover="_onMouseOverRow(rowIndex+1, 0, 'body')" @mouseout="_onMouseOutRow(rowIndex+1, 0, 'body')">
+        <div class="controls-Schedule__grid-cell__time__wrapper">
+          <span class="controls-Schedule__grid-cell__time__label">{{ row.start }}</span>
+        </div>
+      </div>
+      <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"
+           @mouseover="_onMouseOverRow(rowIndex, 0, 'body')" @mouseout="_onMouseOutRow(rowIndex+1, 0, 'body')"></div>
+      <!-- ./RowTime -->
+
+
+      <!-- DayInTime-->
+      <div v-for="(day, cellIndex) in row.days" class="controls-Schedule__grid-cell"
+           :class="{'controls-Schedule__grid__cell_hovered': cellIndex+1 === $data._hoveredItem.cellIndex}"
+           @mouseover="_onMouseOverRow(rowIndex+1, 1 + cellIndex, 'body')"
+           @mouseout="_onMouseOutRow(rowIndex+1, 1 + cellIndex, 'body')">
+        <div v-for="lesson in day.lessons" class="controls-Schedule__lesson"
+             :class="'bg-color-'+lessons[lesson.id].color">
+          <span class="controls-Schedule__lesson-name">{{ lesson.title }}, {{ $lc($cut(lesson.type)) }}</span>
+          <span class="controls-Schedule__lesson-room">{{ lesson.room }}</span>
+          <span class="controls-Schedule__lesson-teacher">{{ lesson.teacher }}</span>
+        </div>
+      </div>
+      <!-- ./DayInTime-->
+
+    </div>
+    <!-- ./Rows can contain lessons -->
+
+    <!-- Last grid row with end of last lesson-->
+    <div class="controls-Schedule__grid-row controls-Schedule__grid-row__end">
+      <!-- RowTime -->
+      <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
+      <div class="controls-Schedule__grid-cell controls-Schedule__grid-cell__time">
+        <div class="controls-Schedule__grid-cell__time__wrapper">
+          <span class="controls-Schedule__grid-cell__time__label">{{ ScheduleData.rows[ScheduleData.rows.length-1].stop }}</span>
+        </div>
+      </div>
+      <div class="controls-Schedule__grid-cell controls-Schedule__fake-for-time"></div>
+      <!-- ./RowTime -->
+
+      <div v-for="day in ScheduleData.rows[ScheduleData.rows.length-1].days"
+           class="controls-Schedule__grid-cell"></div>
+    </div>
+    <!-- ./Last grid row with end of last lesson-->
+
+    <!-- ./Grid rows -->
+
 
   </div>
+  <!-- ./Schedule grid, main content -->
+
+  <!-- TODO: Fixme, вёрстка без этого не обновляется. Выпилить при переходе на Vuex -->
+  <div style="display: none">{{ $data._hoveredItem.isHovered }}</div>
+
 </div>

@@ -1,7 +1,10 @@
 <template>
     <div class="wrap">
         <div style="display: inline-flex" class="demo-mainMenu">
-            <Menu caption="Главное меню сообщений и расписания" :items="this.items"/>
+            <Menu caption="Главное меню сообщений и расписания"
+                  :items="this.items"
+                  markerPosition="left"
+                 />
         </div>
     </div>
 </template>

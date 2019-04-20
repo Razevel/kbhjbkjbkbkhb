@@ -1,0 +1,37 @@
+<Layout :columnsCount="+3">
+  <template v-slot:topRow>
+    <div class="controls-Footer__topRow_content-wrapper">
+    <div class="controls-Footer__logo-wrapper">
+      <div class="controls-Footer__logo"></div>
+    </div>
+    </div>
+  </template>
+  <template v-slot:column1>
+    <div class="controls-Footer__column-content controls-Footer__column-content-1">
+      Колонка 1
+    </div>
+  </template>
+  <template v-slot:column2>
+    <div class="controls-Footer__column-content controls-Footer__column-content-2">
+      Колонка 2
+    </div>
+  </template>
+  <template v-slot:column3>
+    <div class="controls-Footer__column-content controls-Footer__column-content-3">
+      Колонка 3
+    </div>
+  </template>
+  <template v-slot:bottomRow>
+    <div class="controls-Footer__bottomRow_content-wrapper">
+      <div class="controls-Footer__bottomRow_content">
+        <div class="controls-Footer__bottomRow__left-side">
+          За актуальной информацией обращайтесь в
+          <a href="#" @click.prevent>деканат</a> вашего факультета или в <a href="#" @click.prevent>ректорат</a>.
+        </div>
+        <router-link to="/" tag="div" class="controls-Footer__bottomRow__right-side">
+          <b>ЯГТУ 2019</b> <span class="controls-Footer__bottomRow__copyright-sign">&#169;</span>
+        </router-link>
+      </div>
+    </div>
+  </template>
+</Layout>

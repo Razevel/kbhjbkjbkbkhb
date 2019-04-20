@@ -1,4 +1,4 @@
-# controls
+# Diplom ystu raspisanie
 
 ## Project setup
 ```
